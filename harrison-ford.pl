@@ -1,9 +1,9 @@
 #!/usr/bin/perl
 use HTML::Entities;
 
-my $doc = `curl -s "https://news.google.com/news/rss/search/section/q/harrison%20ford?ned=us&gl=US&hl=en"`;
+my $doc = `curl -L -s "https://news.google.com/search?q=harrison+ford&hl=en-US&gl=US&ceid=US:en"`;
 
-my @titles = $doc =~ m|<title>(.*?)</title>|g;
+my @titles = $doc =~ m| class="DY5T1d" >(.*?)</a>|g;
 shift @titles;  shift @titles;
 
 my $index = int(rand($#titles + 1));
